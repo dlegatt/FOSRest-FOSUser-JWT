@@ -1,0 +1,40 @@
+security:
+    encoders:
+      FOS\UserBundle\Model\UserInterface: bcrypt
+    role_hierarchy:
+      ROLE_ADMIN: ROLE_USER
+      ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    providers:
+        fos_userbundle:
+          id: fos_user.user_provider.username
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: true
+            logout: true
+            stateless: true
+            pattern: ^/login_check
+            gfreeau_get_jwt:
+              username_parameter: username
+              password_parameter: password
+              success_handler: lexik_jwt_authentication.handler.authentication_success
+              failure_handler: lexik_jwt_authentication.handler.authentication_failure
+        app:
+          pattern: ^/posts
+          stateless: true
+          anonymous: false
+          guard:
+            authenticators:
+              - lexik_jwt_authentication.jwt_token_authenticator
+    access_control:
+      - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+      - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+      - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+      - { path: ^/admin, role: ROLE_ADMIN }
+      - { path: ^/app, roles: IS_AUTHENTICATED_FULLY }
+      - { path: ^/posts, roles: IS_AUTHENTICATED_ANONYMOUSLY }

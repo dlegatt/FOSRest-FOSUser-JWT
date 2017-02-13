@@ -1,4 +1,8 @@
-.checkout
-=========
+#Symfony REST API setup
+Symfony 3.2 configured with the following bundles:
 
-A Symfony project created on February 8, 2017, 7:44 pm.
+* FOSUserBundle
+* LexikJWTAuthenticationBundle
+* JMSSerializerBundle
+* GfreeauGetJWTBundle
+* NelmioCorsBundle

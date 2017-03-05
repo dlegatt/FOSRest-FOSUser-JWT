@@ -4,14 +4,20 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Post;
 use AppBundle\Form\PostType;
+use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class PostController extends Controller
+class PostController extends FOSRestController
 {
     public function getPostsAction()
     {
-        return $this->getDoctrine()->getRepository('AppBundle:Post')->findAll();
+        $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findAll();
+        $view = $this->view($posts,200)
+            ->setTemplate('posts/index.html.twig')
+            ->setTemplateVar('posts');
+
+        return $this->handleView($view);
     }
 
     public function postPostsAction(Request $request)

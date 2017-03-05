@@ -90,7 +90,7 @@ fos_rest:
   format_listener:
     enabled: true
     rules:
-      - { path: '^/', priorities: ['json','xml'], fallback_format: 'html' }
+      - { path: '^/', priorities: ['json','xml', 'html'], fallback_format: 'html' }
 nelmio_cors:
   defaults:
     allow_credentials: false

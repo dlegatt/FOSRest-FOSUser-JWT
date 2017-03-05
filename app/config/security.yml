@@ -37,4 +37,4 @@ security:
       - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
       - { path: ^/admin, role: ROLE_ADMIN }
       - { path: ^/app, roles: IS_AUTHENTICATED_FULLY }
-      - { path: ^/posts, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#      - { path: ^/posts, roles: IS_AUTHENTICATED_ANONYMOUSLY }

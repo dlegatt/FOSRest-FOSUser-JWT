@@ -20,4 +20,14 @@ class DefaultController extends FOSRestController
         $view->setContext($ctx);
         return $this->handleView($view);
     }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Rest\Get("/app/default")
+     */
+    public function defaultAction()
+    {
+        $view = $this->view('Hello World!');
+        return $this->handleView($view);
+    }
 }
